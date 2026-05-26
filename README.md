@@ -72,10 +72,11 @@ hf download XiaomiMiMo/MiMo-V2.5-ASR --local-dir ./models/MiMo-V2.5-ASR
 
 Spin up the MiMo-V2.5-ASR demo in minutes with the built-in Gradio app.
 
-### Prerequisites (Linux)
+### Prerequisites (Linux & macOS)
 
-* Python 3.12
-* CUDA >= 12.0
+* Python >= 3.10
+* PyTorch >= 2.2.0 (Supports native `scaled_dot_product_attention` SDPA)
+* Accelerator hardware (CUDA GPU or Apple Silicon MPS GPU for local acceleration; falls back to CPU if unavailable)
 
 ### Installation
 
@@ -83,19 +84,14 @@ Spin up the MiMo-V2.5-ASR demo in minutes with the built-in Gradio app.
 git clone https://github.com/XiaomiMiMo/MiMo-V2.5-ASR.git
 cd MiMo-V2.5-ASR
 pip install -r requirements.txt
-pip install flash-attn==2.7.4.post1
 ```
 
-> \[!Note]
-> If the compilation of flash-attn takes too long, you can download the precompiled wheel and install it manually:
->
-> * [Download Precompiled Wheel](https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp312-cp312-linux_x86_64.whl)
->
-> ```sh
-> pip install /path/to/flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp312-cp312-linux_x86_64.whl
-> ```
+> \[!TIP]
+> Because this project utilizes PyTorch's native `scaled_dot_product_attention` (SDPA), you do **not** need to install or compile the `flash-attn` package. The model runs out-of-the-box on macOS (Apple Silicon MPS), Linux CUDA containers, and CPU-only environments.
 
 ### Run the Demo
+
+This launches a local Gradio interface for MiMo-V2.5-ASR. You can upload an audio file or record directly from your microphone.
 
 ```bash
 python run_mimo_asr.py
@@ -103,21 +99,50 @@ python run_mimo_asr.py
 
 ![MiMo-V2.5-ASR Demo](assets/MiMo_ASR_Demo.png)
 
-This launches a local Gradio interface for MiMo-V2.5-ASR. You can:
+#### 💻 Command-Line Examples (命令行範例)
 
-* Upload an audio file **or** record directly from your microphone.
-* Optionally specify a **language tag** (Chinese / English / Auto) to bias the model for a specific language, or leave it to **Auto** for automatic language detection (recommended for code-switched speech).
-* The demo calls the `asr_sft()` interface under the hood.
+You can customize the model's initialization and hosting options using command-line arguments:
 
-To load the model and tokenizer automatically at startup, pass their paths on the command line:
+##### 1. Basic Launch (Using defaults)
+```bash
+python run_mimo_asr.py
+```
 
+##### 2. Explicitly Load Model and Tokenizer at Startup
+Avoid manually typing paths in the web UI by specifying them on the command line:
 ```bash
 python run_mimo_asr.py \
     --model-path ./models/MiMo-V2.5-ASR \
     --tokenizer-path ./models/MiMo-Audio-Tokenizer
 ```
 
-Otherwise, enter the local paths for `MiMo-Audio-Tokenizer` and `MiMo-V2.5-ASR` in the **Model Configuration** tab, then start transcribing!
+##### 3. Bind to a Specific Network Host and Port
+Useful for deploying on a remote server or setting up local access:
+```bash
+python run_mimo_asr.py --host 127.0.0.1 --port 8080
+```
+
+##### 4. Generate a Temporary Public Share Link
+```bash
+python run_mimo_asr.py --share
+```
+
+##### 5. Enable Debug Mode
+```bash
+python run_mimo_asr.py --debug
+```
+
+##### 6. Multi-Option Production-Style Command
+Combines custom paths, hosting configuration, sharing, and debugging in a single command:
+```bash
+python run_mimo_asr.py \
+    --model-path ./models/MiMo-V2.5-ASR \
+    --tokenizer-path ./models/MiMo-Audio-Tokenizer \
+    --host 0.0.0.0 \
+    --port 9000 \
+    --share \
+    --debug
+```
 
 ## Python API
 

@@ -33,7 +33,12 @@ class MiMoV25ASRInterface:
 
     def initialize_model(self, model_path=None, tokenizer_path=None):
         try:
-            self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+            if torch.cuda.is_available():
+                self.device = torch.device("cuda")
+            elif hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+                self.device = torch.device("mps")
+            else:
+                self.device = torch.device("cpu")
 
             if not model_path:
                 model_path = "./models/MiMo-V2.5-ASR"
@@ -42,8 +47,9 @@ class MiMoV25ASRInterface:
 
             print(f"Model path: {model_path}")
             print(f"Tokenizer path: {tokenizer_path}")
+            print(f"Device: {self.device}")
 
-            self.model = MimoAudio(model_path, tokenizer_path)
+            self.model = MimoAudio(model_path, tokenizer_path, device=str(self.device))
             self.asr_generator = ASRGenerator(self.model)
 
             self.model_initialized = True
@@ -125,9 +131,11 @@ class MiMoV25ASRInterface:
                                 placeholder="Click the initialize model button to start...",
                             )
                             gr.Markdown("### System information")
+                            gpu_available = torch.cuda.is_available() or (hasattr(torch.backends, "mps") and torch.backends.mps.is_available())
+                            device_name = "CUDA GPU" if torch.cuda.is_available() else ("Apple Silicon MPS GPU" if (hasattr(torch.backends, "mps") and torch.backends.mps.is_available()) else "No (CPU)")
                             gr.Textbox(
                                 label="Device information",
-                                value=f"GPU available: {'Yes' if torch.cuda.is_available() else 'No'}",
+                                value=f"GPU available: {'Yes' if gpu_available else 'No'} ({device_name})",
                                 interactive=False,
                             )
 
