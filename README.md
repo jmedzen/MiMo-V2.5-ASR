@@ -82,7 +82,7 @@ hf download XiaomiMiMo/MiMo-V2.5-ASR --local-dir ./models/MiMo-V2.5-ASR
 ### 安裝步驟
 
 ```bash
-git clone https://github.com/XiaomiMiMo/MiMo-V2.5-ASR.git
+git clone https://github.com/jmedzen/MiMo-V2.5-ASR.git
 cd MiMo-V2.5-ASR
 pip install -r requirements.txt
 ```
@@ -174,7 +174,7 @@ text_en = model.asr_sft("path/to/audio.wav", audio_tag="<english>")
       title={MiMo-V2.5-ASR: Robust Speech Recognition Across Languages, Dialects, and Complex Acoustic Scenarios},
       author={LLM-Core-Team Xiaomi},
       year={2026},
-      url={https://github.com/XiaomiMiMo/MiMo-V2.5-ASR},
+      url={https://github.com/jmedzen/MiMo-V2.5-ASR},
 }
 ```
 
