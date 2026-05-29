@@ -6,8 +6,7 @@
   <h3>
     <b>
       <span>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><br/>
-      MiMo-V2.5-ASR: Robust Speech Recognition Across<br/>
-      Languages, Dialects, and Complex Acoustic Scenarios<br/>
+      MiMo-V2.5-ASR：支援多語言、方言及複雜聲學場景的強健語音辨識模型<br/>
       <span>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
     </b>
   </h3>
@@ -19,9 +18,9 @@
   |
   <a href="https://huggingface.co/XiaomiMiMo/MiMo-V2.5-ASR" target="_blank">🤗 HuggingFace</a>
   &nbsp;|
-  <a href="https://huggingface.co/spaces/XiaomiMiMo/MiMo-V2.5-ASR" target="_blank">🚀 Online Demo</a>
+  <a href="https://huggingface.co/spaces/XiaomiMiMo/MiMo-V2.5-ASR" target="_blank">🚀 線上 Demo</a>
   &nbsp;|
-  <a href="https://mimo.xiaomi.com/mimo-v2-5-asr" target="_blank">📰 Blog</a>
+  <a href="https://mimo.xiaomi.com/mimo-v2-5-asr" target="_blank">📰 部落格</a>
   &nbsp;|
 
   <br/>
@@ -29,34 +28,36 @@
 
 <br/>
 
-## Introduction
+## 簡介
 
-**MiMo-V2.5-ASR** is a state-of-the-art end-to-end automatic speech recognition (ASR) model developed by the Xiaomi MiMo team. It is built to deliver accurate and robust transcription across Mandarin Chinese and English, multiple Chinese dialects, code-switched speech, song lyrics, knowledge-intensive content, noisy acoustic environments, and multi-speaker conversations. MiMo-V2.5-ASR achieves state-of-the-art results on a wide range of public benchmarks.
+**MiMo-V2.5-ASR** 是由小米 MiMo 團隊開發的先進端到端自動語音辨識（ASR）模型。本模型旨在針對中文普通話與英文、多種漢語方言、中英混合（Code-Switching）、歌詞辨識、知識密集型內容、高噪音聲學環境及多發言人會議等場景，提供高度精準且強健的轉錄服務。MiMo-V2.5-ASR 在多項公開基準測試中均取得了領先水準。
 
-## Abstract
+## 摘要
 
-Automatic speech recognition systems are expected to faithfully transcribe speech signals that originate from diverse languages, dialects, accents, and domains, and that are captured under a wide variety of acoustic conditions. While conventional end-to-end models perform well on in-domain data, they still fall short of real-world requirements in challenging scenarios such as dialect mixing, code-switching, knowledge-intensive content, noisy environments, and multi-speaker conversations. Therefore, we present **MiMo-V2.5-ASR**, an end-to-end speech recognition model developed by the Xiaomi MiMo team. Through large-scale mid-training, high-quality supervised fine-tuning, and a novel reinforcement-learning algorithm, MiMo-V2.5-ASR achieves systematic improvements along the following dimensions:
+現代語音辨識系統需要能夠準確轉錄來自不同語言、方言、口音和領域的語音訊號，並在多種聲學條件下保持穩定。雖然傳統端到端模型在特定領域表現優異，但在面對方言混雜、中英夾雜、專業領域知識、背景噪音干擾以及多發言人交疊等現實挑戰時仍顯不足。
 
-- 🗣️ **Chinese Dialects**: Native support for Wu, Cantonese, Hokkien, Sichuanese, and more.
-- 🔀 **Code-Switch**: Seamless Chinese–English code-switching transcription with no language tags required.
-- 🎵 **Song Recognition**: High-precision lyrics transcription for Chinese and English songs, even with mixed accompaniment and vocals.
-- 🔊 **Noisy Environments**: Robust recognition under heavy noise, far-field capture, and other adverse acoustic conditions.
-- 👥 **Multi-Speaker**: Accurate transcription of overlapping, multi-party conversations such as meetings.
-- 🇬🇧 **Complex English Scenarios**: Leading performance on the Open ASR Leaderboard for challenging English benchmarks such as AMI.
-- 📚 **Knowledge-Intensive Recognition**: Precise recognition of classical poetry, technical terminology, personal names, place names, and other knowledge-dense material.
-- 📝 **Native Punctuation**: Punctuation generated natively from prosody and semantics, delivering ready-to-use transcripts with no post-processing needed.
+為此，小米 MiMo 團隊推出了端到端語音辨識模型 **MiMo-V2.5-ASR**。透過大規模增量預訓練（Mid-training）、高品質監督微調（SFT）和全新的強化學習（RL）演算法，MiMo-V2.5-ASR 在以下多個維度上實現了系統性的效能突破：
 
-## Results
+- 🗣️ **漢語方言**：原生支援吳語、粵語、閩南語、四川話等多種方言。
+- 🔀 **中英混合（Code-Switch）**：無縫辨識中英文夾雜語音，無需預先標記語言標籤。
+- 🎵 **歌詞辨識**：高精度的中英文歌曲轉錄，即使在背景音樂和伴奏混合的情況下也能精準提取歌詞。
+- 🔊 **強健抗噪**：在強噪音、遠場收音等不良聲學環境下仍具備極佳的辨識率。
+- 👥 **多發言人會議**：精準轉錄多人交疊、交談的會議記錄。
+- 🇬🇧 **複雜英文場景**：在 AMI 等挑戰性英文 benchmark 的 Open ASR 排行榜上名列前茅。
+- 📚 **知識密集型辨識**：精準辨識古詩詞、專業技術術語、人名、地名等高密度知識內容。
+- 📝 **原生標點符號**：模型直接根據語音停頓與 semantic 語意原生生成標點符號，輸出結果即可直接使用，無需額外後處理。
 
-MiMo-V2.5-ASR has been evaluated across a broad set of benchmarks spanning standard Mandarin and English, Chinese dialects, lyric recognition, and internal business scenarios. The chart below summarizes the average performance of MiMo-V2.5-ASR across these scenarios.
+## 效能表現
+
+MiMo-V2.5-ASR 已在標準普通話、英語、漢語方言、歌詞辨識以及多個內部業務場景的廣泛基準上完成評估。下圖展示了 MiMo-V2.5-ASR 在這些場景中的平均表現：
 
 ![Results](assets/MiMo_ASR_Results.png)
 
-For per-benchmark numbers and specific qualitative cases, please refer to our [blog](https://mimo.xiaomi.com/mimo-v2-5-asr).
+如需查看每個基準測試的詳細數據與具體質性案例，請參閱我們的[部落格](https://mimo.xiaomi.com/mimo-v2-5-asr)。
 
-## Model Download
+## 模型下載
 
-| Models   | 🤗 Hugging Face |
+| 模型名稱 | 🤗 Hugging Face 下載連結 |
 |-------|-------|
 | MiMo-Audio-Tokenizer | [XiaomiMiMo/MiMo-Audio-Tokenizer](https://huggingface.co/XiaomiMiMo/MiMo-Audio-Tokenizer) |
 | MiMo-V2.5-ASR | [XiaomiMiMo/MiMo-V2.5-ASR](https://huggingface.co/XiaomiMiMo/MiMo-V2.5-ASR) |
@@ -68,17 +69,17 @@ hf download XiaomiMiMo/MiMo-Audio-Tokenizer --local-dir ./models/MiMo-Audio-Toke
 hf download XiaomiMiMo/MiMo-V2.5-ASR --local-dir ./models/MiMo-V2.5-ASR
 ```
 
-## Getting Started
+## 快速入門
 
-Spin up the MiMo-V2.5-ASR demo in minutes with the built-in Gradio app.
+透過內建的 Gradio 應用程式，可在幾分鐘內啟動 MiMo-V2.5-ASR 的互動網頁介面。
 
-### Prerequisites (Linux & macOS)
+### 系統環境要求 (Linux & macOS)
 
 * Python >= 3.10
-* PyTorch >= 2.2.0 (Supports native `scaled_dot_product_attention` SDPA)
-* Accelerator hardware (CUDA GPU or Apple Silicon MPS GPU for local acceleration; falls back to CPU if unavailable)
+* PyTorch >= 2.2.0 (支援原生 `scaled_dot_product_attention` SDPA)
+* 硬體加速器（支援 CUDA GPU 或 Apple Silicon MPS GPU；若無加速卡則自動退回 CPU 執行）
 
-### Installation
+### 安裝步驟
 
 ```bash
 git clone https://github.com/XiaomiMiMo/MiMo-V2.5-ASR.git
@@ -87,11 +88,11 @@ pip install -r requirements.txt
 ```
 
 > \[!TIP]
-> Because this project utilizes PyTorch's native `scaled_dot_product_attention` (SDPA), you do **not** need to install or compile the `flash-attn` package. The model runs out-of-the-box on macOS (Apple Silicon MPS), Linux CUDA containers, and CPU-only environments.
+> 由於本專案採用 PyTorch 原生的 `scaled_dot_product_attention` (SDPA)，您**不需要**編譯或安裝複雜的 `flash-attn` 套件。模型可以在 macOS (Apple Silicon MPS)、標準 Linux CUDA 容器以及僅有 CPU 的伺服器環境下開箱即用。
 
-### Run the Demo
+### 啟動 Web UI 介面
 
-This launches a local Gradio interface for MiMo-V2.5-ASR. You can upload an audio file or record directly from your microphone.
+執行以下命令以啟動本地的 Gradio 網頁介面。您可以直接上傳音訊檔案，或使用麥克風即時錄音。
 
 ```bash
 python run_mimo_asr.py
@@ -99,41 +100,41 @@ python run_mimo_asr.py
 
 ![MiMo-V2.5-ASR Demo](assets/MiMo_ASR_Demo.png)
 
-#### 💻 Command-Line Examples (命令行範例)
+#### 💻 命令行範例 (Command-Line Examples)
 
-You can customize the model's initialization and hosting options using command-line arguments:
+您可以透過命令列參數來調整模型的載入路徑與服務配置：
 
-##### 1. Basic Launch (Using defaults)
+##### 1. 基本啟動 (使用預設配置)
 ```bash
 python run_mimo_asr.py
 ```
 
-##### 2. Explicitly Load Model and Tokenizer at Startup
-Avoid manually typing paths in the web UI by specifying them on the command line:
+##### 2. 啟動時直接載入指定模型與分詞器路徑
+省去在網頁介面手動輸入路徑的步驟，在啟動時自動載入模型：
 ```bash
 python run_mimo_asr.py \
     --model-path ./models/MiMo-V2.5-ASR \
     --tokenizer-path ./models/MiMo-Audio-Tokenizer
 ```
 
-##### 3. Bind to a Specific Network Host and Port
-Useful for deploying on a remote server or setting up local access:
+##### 3. 指定綁定的 IP 位址與連接埠
+適用於在遠端伺服器佈署或區域網路共用場景：
 ```bash
 python run_mimo_asr.py --host 127.0.0.1 --port 8080
 ```
 
-##### 4. Generate a Temporary Public Share Link
+##### 4. 產生臨時的公開分享連結 (Gradio Share Link)
 ```bash
 python run_mimo_asr.py --share
 ```
 
-##### 5. Enable Debug Mode
+##### 5. 啟用除錯模式
 ```bash
 python run_mimo_asr.py --debug
 ```
 
-##### 6. Multi-Option Production-Style Command
-Combines custom paths, hosting configuration, sharing, and debugging in a single command:
+##### 6. 多引數組合生產佈署命令
+結合自訂路徑、主機與連接埠配置、對外分享和除錯紀錄的完整範例：
 ```bash
 python run_mimo_asr.py \
     --model-path ./models/MiMo-V2.5-ASR \
@@ -144,28 +145,29 @@ python run_mimo_asr.py \
     --debug
 ```
 
-## Python API
+## Python API 使用範例
 
-Basic usage with the `asr_sft` interface:
+使用 `asr_sft` 介面的基本程式碼範例：
 
 ```python
 from src.mimo_audio.mimo_audio import MimoAudio
 
+# 初始化 ASR 模型
 model = MimoAudio(
     model_path="./models/MiMo-V2.5-ASR",
     tokenizer_path="./models/MiMo-Audio-Tokenizer",
 )
 
-# Automatic language detection (recommended for code-switching)
+# 自動語言偵測辨識 (推薦用於中英混合 Code-Switching)
 text = model.asr_sft("path/to/audio.wav")
 print(text)
 
-# With explicit language tag
+# 帶有特定語言標籤的辨識模式
 text_zh = model.asr_sft("path/to/audio.wav", audio_tag="<chinese>")
 text_en = model.asr_sft("path/to/audio.wav", audio_tag="<english>")
 ```
 
-## Citation
+## 引用
 
 ```bibtex
 @misc{coreteam2026mimov25asr,
@@ -176,6 +178,6 @@ text_en = model.asr_sft("path/to/audio.wav", audio_tag="<english>")
 }
 ```
 
-## Contact
+## 聯絡方式
 
-Please contact us at [mimo@xiaomi.com](mailto:mimo@xiaomi.com) or open an issue if you have any questions.
+如有任何問題，請寄信至 [mimo@xiaomi.com](mailto:mimo@xiaomi.com) 或在 GitHub 提交 Issue。
