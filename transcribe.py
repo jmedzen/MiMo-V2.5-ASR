@@ -138,7 +138,7 @@ def main():
     parser.add_argument("audio", help="音頻檔案路徑")
     parser.add_argument("--model-path", default="./models/MiMo-V2.5-ASR")
     parser.add_argument("--tokenizer-path", default="./models/MiMo-Audio-Tokenizer")
-    parser.add_argument("--chunk-sec", type=float, default=30.0, help="每段秒數（預設30秒）")
+    parser.add_argument("--chunk-sec", type=float, default=300.0, help="每段秒數（預設300秒）")
     parser.add_argument("--language", choices=["auto", "zh", "en"], default="zh")
     parser.add_argument("--output-dir", default=None)
     args = parser.parse_args()

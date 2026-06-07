@@ -131,8 +131,8 @@ class MiMoV25ASRInterface:
             total_duration = wav.shape[0] / target_sr
             print(f"Audio duration: {total_duration:.2f} seconds")
 
-            # Split into chunks of 30 seconds
-            chunk_sec = 30.0
+            # Split into chunks of 300 seconds
+            chunk_sec = 300.0
             chunk_samples = int(chunk_sec * target_sr)
             total_samples = wav.shape[0]
             

@@ -94,7 +94,7 @@ pip install -r requirements.txt
 
 為了讓 Apple Silicon Mac（特別是統一記憶體架構機型）以及有限記憶體設備能穩定運行長音訊轉錄，我們設計了以下優化機制：
 1. **即時記憶體防護 (Memory Guard)**：Web UI 整合了動態記憶體監控面板。在載入模型前，系統會先檢測可用記憶體（最低安全門檻為 22 GB，建議 28 GB 統一記憶體/RAM）。若可用記憶體不足以安全載入，系統會發出警告或拒絕載入，防止觸發系統級的 Out-of-Memory (OOM) 或是過度 Swap 導致系統卡頓。
-2. **長音訊切片串流 (Audio Chunking & Streaming)**：針對長音訊檔案（如 1 小時以上的錄音），Gradio Web UI 與轉錄腳本皆已預設採用 30 秒切片轉錄機制。系統會逐步處理並即時將結果串流（Stream/Yield）至網頁介面。
+2. **長音訊切片串流 (Audio Chunking & Streaming)**：針對長音訊檔案（如 1 小時以上的錄音），Gradio Web UI 與轉錄腳本皆已預設採用 300 秒 (5 分鐘) 切片轉錄機制。系統會逐步處理並即時將結果串流（Stream/Yield）至網頁介面。
 3. **主動記憶體清理 (Active Cache Emptying)**：在每段音訊轉錄完成後，系統會自動呼叫 `torch.mps.empty_cache()` (macOS) / `torch.cuda.empty_cache()` (Linux) 及進行 Garbage Collection (GC)，將記憶體開銷嚴格限制在極低範圍。
 
 ### 啟動 Web UI 介面
@@ -164,7 +164,7 @@ python transcribe.py <音訊檔案路徑> [選用參數]
 ### 常用參數說明：
 - `audio`：必填，音訊檔案路徑（如 `.wav`, `.mp3`, `.m4a`）。
 - `--language`：可選，指定辨識語系。支援 `zh` (中文)、`en` (英文) 與 `auto` (自動偵測，預設為 `zh`)。
-- `--chunk-sec`：可選，音訊切片長度（預設 `30.0` 秒，已內建自動記憶體清理與垃圾回收）。
+- `--chunk-sec`：可選，音訊切片長度（預設 `300.0` 秒，已內建自動記憶體清理與垃圾回收）。
 - `--output-dir`：可選，指定字幕與文字檔輸出目錄（預設與輸入音訊同目錄）。
 
 ### 轉錄範例：
