@@ -152,6 +152,30 @@ python run_mimo_asr.py \
     --debug
 ```
 
+## CLI 命令行轉錄工具 (Command-Line Interface)
+
+本專案提供了一個獨立的 CLI 轉錄工具 `transcribe.py`，適合用來批量處理或在終端機直接轉錄音訊，並自動輸出 **SRT 字幕** 與 **TXT 純文字** 兩種格式。
+
+### 基本用法：
+```bash
+python transcribe.py <音訊檔案路徑> [選用參數]
+```
+
+### 常用參數說明：
+- `audio`：必填，音訊檔案路徑（如 `.wav`, `.mp3`, `.m4a`）。
+- `--language`：可選，指定辨識語系。支援 `zh` (中文)、`en` (英文) 與 `auto` (自動偵測，預設為 `zh`)。
+- `--chunk-sec`：可選，音訊切片長度（預設 `30.0` 秒，已內建自動記憶體清理與垃圾回收）。
+- `--output-dir`：可選，指定字幕與文字檔輸出目錄（預設與輸入音訊同目錄）。
+
+### 轉錄範例：
+```bash
+# 自動語言偵測，並將結果輸出至 ./outputs 目錄
+python transcribe.py path/to/audio.mp3 --language auto --output-dir ./outputs
+```
+執行後將在輸出目錄下產生：
+1. `audio.mp3.mimo.srt` (標準 SRT 字幕，可用於影片播放器)
+2. `audio.mp3.mimo.txt` (逐段純文字檔)
+
 ## Python API 使用範例
 
 使用 `asr_sft` 介面的基本程式碼範例：
